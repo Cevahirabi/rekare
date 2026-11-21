@@ -14,235 +14,190 @@
 
         body {
             display: flex;
-            flex-direction: column;
             height: 100vh;
-            height: 100dvh;
             background-color: #f4f7f6;
             color: #333;
             overflow: hidden;
         }
+/* Normal ve tıklanmış (visited) tüm linklerin rengini sabitler */
+a, a:visited {
+    color: blue; /* Buraya kendi mavi tonunuzu yazabilirsiniz, örn: #0000FF veya #007bff */
+    text-decoration: none; /* İsteğe bağlı: Alt çizgisini kaldırmak isterseniz */
+}
 
-        /* Üst Menü Alanı */
-        .top-menu {
-            width: 100%;
+        /* Sol Menü (Sidebar) */
+        .sidebar {
+            width: 320px;
             background-color: #1e293b;
             color: #fff;
             display: flex;
             flex-direction: column;
-            border-bottom: 2px solid #334155;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
-            flex-shrink: 0;
-            z-index: 10;
+            border-right: 1px solid #334155;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .top-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 8px 14px;
-            gap: 10px;
-            border-bottom: 1px solid #334155;
-        }
-
-        .brand-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .brand-left img {
-            height: 44px;
-            width: auto;
-            object-fit: contain;
-            display: block;
-        }
-
-        .home-link {
-            display: inline-block;
-            padding: 6px 12px;
-            background-color: #0f172a;
+        .sidebar h2 {
+            padding: 24px 20px;
+            font-size: 1.2rem;
             color: #38bdf8;
-            text-decoration: none;
-            font-size: 0.82rem;
-            font-weight: 600;
-            border-radius: 6px;
-            border: 1px solid #334155;
-            white-space: nowrap;
-            transition: all 0.2s ease;
+            border-bottom: 1px solid #334155;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .home-link:hover, .home-link.active {
-            background-color: #38bdf8;
-            color: #0f172a;
-            border-color: #38bdf8;
-        }
-
-        .toggle-btn {
-            padding: 6px 10px;
-            background-color: #334155;
-            color: #f8fafc;
-            border: none;
-            border-radius: 6px;
-            font-size: 0.78rem;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .toggle-btn:hover {
-            background-color: #475569;
-        }
-
-        /* Minimize edilmiş yatay link şeridi */
         .menu-list {
             list-style: none;
-            display: flex;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            overflow-y: hidden;
-            padding: 7px 10px;
-            gap: 6px;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-        }
-
-        .top-menu.collapsed .menu-list {
-            display: none;
+            overflow-y: auto;
+            flex: 1;
         }
 
         .menu-item {
-            flex-shrink: 0;
+            border-bottom: 1px solid #334155;
         }
 
         .menu-item a {
             display: block;
-            padding: 6px 10px;
-            background-color: #293548;
+            padding: 18px 20px;
             color: #e2e8f0;
             text-decoration: none;
-            font-size: 0.8rem;
-            border-radius: 6px;
-            white-space: nowrap;
+            font-size: 0.95rem;
             transition: all 0.2s ease;
         }
 
         .menu-item a:hover, .menu-item a.active {
-            background-color: #38bdf8;
-            color: #0f172a;
-            font-weight: 600;
+            background-color: #0f172a;
+            color: #38bdf8;
+            border-left: 4px solid #38bdf8;
+            padding-left: 24px;
         }
 
-        /* Altta Açılan Sayfa Alanı (Iframe) */
+        /* Sağ İçerik Alanı (Iframe) */
         .content {
             flex: 1;
-            width: 100%;
-            min-height: 0;
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
 
         iframe {
             width: 100%;
             height: 100%;
             border: none;
-            background-color: #ffffff;
-        }
-
-        /* Telefon Ekranları İçin Ek İnceltme */
-        @media (max-width: 600px) {
-            .top-bar {
-                padding: 6px 10px;
-            }
-
-            .brand-left img {
-                height: 36px;
-            }
-
-            .home-link {
-                padding: 5px 9px;
-                font-size: 0.76rem;
-            }
-
-            .toggle-btn {
-                padding: 5px 8px;
-                font-size: 0.74rem;
-            }
-
-            .menu-list {
-                padding: 6px 8px;
-                gap: 5px;
-            }
-
-            .menu-item a {
-                padding: 5px 8px;
-                font-size: 0.74rem;
-            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Üst Menü -->
-    <header class="top-menu" id="topMenu">
-        <div class="top-bar">
-            <div class="brand-left">
-                <img src="logomuz-r2.png" alt="REKARE Logo">
-                <a href="anasayfa.html" target="display_iframe" class="home-link nav-link active">ANA SAYFA</a>
-            </div>
-            <button type="button" class="toggle-btn" id="toggleMenuBtn" onclick="toggleMenu()">Linkleri Gizle</button>
-        </div>
-
+    <!-- Sol Menü -->
+    <div class="sidebar"><center>
+        <h2><img src="logomuz-r2.png" width="200" height="150" border="0"> <br><a href="anasayfa.html" target="display_iframe" class="active">ANA SAYFA</a></h2></center>
         <ul class="menu-list">
-            <li class="menu-item"><a href="urun1.html" target="display_iframe" class="nav-link">1. Klasik Taş Tozu Saksı</a></li>
-            <li class="menu-item"><a href="urun2.html" target="display_iframe" class="nav-link">2. Hidroponik Saksı</a></li>
-            <li class="menu-item"><a href="urun3.html" target="display_iframe" class="nav-link">3. Sallanan Saksı</a></li>
-            <li class="menu-item"><a href="urun4.html" target="display_iframe" class="nav-link">4. Kök Saksı</a></li>
-            <li class="menu-item"><a href="urun5.html" target="display_iframe" class="nav-link">5. Duvara Asılan Saksı</a></li>
-            <li class="menu-item"><a href="urun6.html" target="display_iframe" class="nav-link">6. Cam Tüp Saksı</a></li>
-            <li class="menu-item"><a href="urun7.html" target="display_iframe" class="nav-link">7. Mesleki Saksılar</a></li>
-            <li class="menu-item"><a href="urun8.html" target="display_iframe" class="nav-link">8. İsimli Saksılar</a></li>
-            <li class="menu-item"><a href="urun9.html" target="display_iframe" class="nav-link">9. Telli Telgraf</a></li>
-            <li class="menu-item"><a href="urun10.html" target="display_iframe" class="nav-link">10. Bonzai Taş Çiçek</a></li>
-            <li class="menu-item"><a href="urun11.html" target="display_iframe" class="nav-link">11. Havai Bitkiler</a></li>
-            <li class="menu-item"><a href="urun12.html" target="display_iframe" class="nav-link">12. Tapınak Saksı</a></li>
-            <li class="menu-item"><a href="urun13.html" target="display_iframe" class="nav-link">13. Şişi Odoşi Saksı</a></li>
-            <li class="menu-item"><a href="urun14.html" target="display_iframe" class="nav-link">14. Havada duran Saksı</a></li>
-            <li class="menu-item"><a href="urun15.html" target="display_iframe" class="nav-link">15. Büst Saksılar</a></li>
-            <li class="menu-item"><a href="urun16.html" target="display_iframe" class="nav-link">16. Çim Adamlar</a></li>
-            <li class="menu-item"><a href="urun17.html" target="display_iframe" class="nav-link">17. Kokedama</a></li>
-            <li class="menu-item"><a href="urun18.html" target="display_iframe" class="nav-link">18. Gece parlayan Saksı</a></li>
-            <li class="menu-item"><a href="urun19.html" target="display_iframe" class="nav-link">19. Geri dönüşüm Saksılar</a></li>
-            <li class="menu-item"><a href="urun20.html" target="display_iframe" class="nav-link">20. Saksı Aksesuarları</a></li>
-            <li class="menu-item"><a href="urun21.html" target="display_iframe" class="nav-link">21. Su Kabağı Lambası</a></li>
-            <li class="menu-item"><a href="urun22.html" target="display_iframe" class="nav-link">22. Lif Sabunları</a></li>
-            <li class="menu-item"><a href="urun23.html" target="display_iframe" class="nav-link">23. Kalsiyum Gübresi</a></li>
-            <li class="menu-item"><a href="urun24.html" target="display_iframe" class="nav-link">24. Tavşan Gübresi</a></li>
-            <li class="menu-item"><a href="urun25.html" target="display_iframe" class="nav-link">25. Kompost Gübre</a></li>
-            <li class="menu-item"><a href="urun26.html" target="display_iframe" class="nav-link">26. Bokashi Sıvı Gübresi</a></li>
-            <li class="menu-item"><a href="urun27.html" target="display_iframe" class="nav-link">27. Biyobozunur Saksı</a></li>
-        </ul>
-    </header>
+            <li class="menu-item">
+                <a href="urun1.html" target="display_iframe" class="active">1. Klasik Taş Tozu Saksı</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun2.html" target="display_iframe">2. Hidroponik Saksı</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun3.html" target="display_iframe">3. Sallanan Saksı</a>
+            </li>
 
-    <!-- Altta Gösterim Alanı (Iframe) -->
-    <main class="content">
+ <li class="menu-item">
+                <a href="urun4.html" target="display_iframe" class="active">4. Kök Saksı</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun5.html" target="display_iframe">5. Duvara Asılan Saksı</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun6.html" target="display_iframe">6. Cam Tüp Saksı</a>
+            </li>
+
+ <li class="menu-item">
+                <a href="urun7.html" target="display_iframe" class="active">7. Mesleki Saksılar</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun8.html" target="display_iframe">8. İsimli Saksılar</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun9.html" target="display_iframe">9. Telli Telgraf</a>
+            </li>
+
+ <li class="menu-item">
+                <a href="urun10.html" target="display_iframe" class="active">10. Bonzai Taş Çiçek</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun11.html" target="display_iframe">11. Havai Bitkiler</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun12.html" target="display_iframe">12. Tapınak Saksı</a>
+            </li>
+
+ <li class="menu-item">
+                <a href="urun13.html" target="display_iframe" class="active">13. Şişi Odoşi Saksı</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun14.html" target="display_iframe">14. Havada duran Saksı</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun15.html" target="display_iframe">15. Büst Saksılar</a>
+            </li>
+
+ <li class="menu-item">
+                <a href="urun16.html" target="display_iframe" class="active">16. Çim Adamlar</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun17.html" target="display_iframe">17. Kokedama</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun18.html" target="display_iframe">18. Gece parlayan Saksı</a>
+            </li>
+
+ <li class="menu-item">
+                <a href="urun19.html" target="display_iframe" class="active">19. Geri dönüşüm Saksılar</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun20.html" target="display_iframe">20. Saksı Aksesuarları</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun21.html" target="display_iframe">21. Su Kabağı Lambası</a>
+            </li>
+ 
+ <li class="menu-item">
+                <a href="urun22.html" target="display_iframe" class="active">22. Lif Sabunları</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun23.html" target="display_iframe">23. Kalsiyum Gübresi</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun24.html" target="display_iframe">24. Tavşan Gübresi</a>
+            </li>
+
+ <li class="menu-item">
+                <a href="urun25.html" target="display_iframe" class="active">25. Kompost Gübre</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun26.html" target="display_iframe">26. Bokashi Sıvı Gübresi</a>
+            </li>
+            <li class="menu-item">
+                <a href="urun27.html" target="display_iframe">27. Biyobozunur Saksı</a>
+            </li>
+       </ul>
+    </div>
+
+    <!-- Sağ Gösterim Alanı (Iframe) -->
+    <div class="content">
         <iframe name="display_iframe" src="anasayfa.html"></iframe>
-    </main>
+    </div>
 
     <script>
-        const links = document.querySelectorAll('.nav-link');
+        // Aktif menü vurgusu için JavaScript
+        const links = document.querySelectorAll('.menu-item a');
         links.forEach(link => {
             link.addEventListener('click', function() {
                 links.forEach(l => l.classList.remove('active'));
                 this.classList.add('active');
-                this.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             });
         });
-
-        function toggleMenu() {
-            const topMenu = document.getElementById('topMenu');
-            const btn = document.getElementById('toggleMenuBtn');
-            topMenu.classList.toggle('collapsed');
-            btn.textContent = topMenu.classList.contains('collapsed') ? 'Ürünler' : 'Linkleri Gizle';
-        }
     </script>
 
 </body>
